@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Omega\Http\Controllers\Auth;
 
-use App\User;
+use Omega\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Omega\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
