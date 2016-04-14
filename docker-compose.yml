@@ -2,3 +2,10 @@ web:
   build: .
   ports:
     - 8000:8000
+  links:
+    - mysql:mysql
+
+mysql:
+  image: mysql:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=secret

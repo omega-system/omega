@@ -4,17 +4,20 @@ RUN apt-get update \
   && apt-get install -y git zlib1g-dev \
   && apt-get clean
 
-RUN docker-php-ext-install mbstring zip \
+RUN docker-php-ext-install \
+    mbstring \
+    pdo_mysql \
+    zip \
   && curl https://getcomposer.org/installer | php
 
 ADD composer.json composer.json
-
-RUN mkdir -p storage/app/public \
+ADD composer.lock composer.lock
+RUN php composer.phar install --no-dev --no-autoloader --no-scripts \
+  && mkdir -p storage/app/public \
   && mkdir -p storage/framework/cache \
   && mkdir -p storage/framework/sessions \
   && mkdir -p storage/framework/views \
-  && mkdir -p storage/logs \
-  && php composer.phar install --no-dev --no-autoloader --no-scripts
+  && mkdir -p storage/logs
 
 ADD . .
 
