@@ -26,6 +26,6 @@ class InsertSuperAdmin extends Migration
      */
     public function down()
     {
-        User::find('00000000')->delete();
+        User::where(['number' => '00000000'])->firstOrFail()->delete();
     }
 }

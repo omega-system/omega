@@ -149,6 +149,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Third Party Service Providers...
+         */
+        Bican\Roles\RolesServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         Omega\Providers\AppServiceProvider::class,
