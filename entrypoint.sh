@@ -30,7 +30,6 @@ fi
 
 sed -i.bak "s/APP_ENV=local/APP_ENV=production/" .env
 sed -i.bak "s/APP_DEBUG=true/APP_DEBUG=false/" .env
-sed -i.bak "s/APP_URL=http://localhost//" .env
 sed -i.bak "s/DB_HOST=127.0.0.1/DB_HOST=${OMEGA_DB_HOST}/" .env
 sed -i.bak "s/DB_PORT=3306/DB_PORT=${OMEGA_DB_PORT}/" .env
 sed -i.bak "s/DB_DATABASE=homestead/DB_DATABASE=${OMEGA_DB_NAME}/" .env
