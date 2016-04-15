@@ -11,6 +11,11 @@
 |
 */
 
+// Secure test
+Route::get('secure', function () {
+    return ['secure' => Request::secure()];
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
