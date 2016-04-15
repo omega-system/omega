@@ -35,6 +35,7 @@ sed -i.bak "s/DB_PORT=3306/DB_PORT=${OMEGA_DB_PORT}/" .env
 sed -i.bak "s/DB_DATABASE=homestead/DB_DATABASE=${OMEGA_DB_NAME}/" .env
 sed -i.bak "s/DB_USERNAME=homestead/DB_USERNAME=${OMEGA_DB_USER}/" .env
 sed -i.bak "s/DB_PASSWORD=secret/DB_PASSWORD=${OMEGA_DB_PASSWORD}/" .env
+sed -i.bak "s/SESSION_DRIVER=file/SESSION_DRIVER=database/" .env
 
 # Create database if not exists
 php -r '
