@@ -152,6 +152,7 @@ return [
          * Third Party Service Providers...
          */
         Bican\Roles\RolesServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
         /*
          * Application Service Providers...
