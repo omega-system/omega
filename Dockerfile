@@ -14,9 +14,7 @@ RUN docker-php-ext-install \
   && curl https://getcomposer.org/installer | php
 
 ADD package.json package.json
-RUN npm install -g gulp && npm install && gulp \
-  && npm uninstall -g gulp \
-  && rm -r node_modules public/dist \
+RUN npm install -g gulp && npm install
 
 ADD composer.json composer.json
 ADD composer.lock composer.lock
@@ -28,6 +26,10 @@ RUN php composer.phar install --no-dev --no-autoloader --no-scripts \
   && mkdir -p storage/logs
 
 ADD . .
+
+RUN gulp \
+  && npm uninstall -g gulp \
+  && rm -r node_modules public/dist \
 
 RUN php composer.phar dump-autoload -o \
   && rm composer.phar \
