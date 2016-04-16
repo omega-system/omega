@@ -1,14 +1,22 @@
 FROM php:7
 
-RUN apt-get update \
-  && apt-get install -y git zlib1g-dev \
-  && apt-get clean
+RUN apt-get update && apt-get install -y \
+    git \
+    nodejs \
+    wget \
+    zlib1g-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
     mbstring \
     pdo_mysql \
     zip \
   && curl https://getcomposer.org/installer | php
+
+ADD package.json package.json
+RUN npm install -g gulp && npm install && gulp \
+  && npm uninstall -g gulp \
+  && rm -r node_modules public/dist \
 
 ADD composer.json composer.json
 ADD composer.lock composer.lock
