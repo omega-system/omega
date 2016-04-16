@@ -1,3 +1,30 @@
-.login.grid .column {
-  width: 450px;
+.login.page {
+  background-color: #f9f9f9;
+}
+
+.login.grid {
+  height: 100%;
+}
+
+.login.grid > .column {
+  width: 450px !important;
+}
+
+.login.grid .logo {
+  border-radius: 50%;
+}
+
+.login.grid .image + .content {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.login.grid .form {
+  background-color: #fff;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 20px;
+  text-align: left;
 }
