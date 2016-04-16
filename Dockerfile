@@ -6,8 +6,7 @@ RUN curl -sL https://deb.nodesource.com/setup_5.x | bash \
     git \
     nodejs \
     zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/* \
-  && ln -s /usr/bin/nodejs /usr/bin/node
+  && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
     mbstring \
