@@ -31,8 +31,7 @@ ADD . .
 RUN gulp \
   && npm uninstall -g gulp \
   && rm -r node_modules public/dist \
-
-RUN php composer.phar dump-autoload -o \
+  && php composer.phar dump-autoload -o \
   && rm composer.phar \
   && cp .env.example .env \
   && php artisan key:generate
