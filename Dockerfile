@@ -1,12 +1,12 @@
 FROM php:7
 
-RUN apt-get update && apt-get install -y \
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash \
+  && apt-get install -y \
+    build-essential \
     git \
     nodejs \
-    npm \
     zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/* \
-  && ln -s /usr/bin/nodejs /usr/bin/node
+  && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
     mbstring \
