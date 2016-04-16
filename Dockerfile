@@ -1,6 +1,8 @@
 FROM php:7
 
-RUN apt-get update && apt-get install -y \
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash \
+  && apt-get install -y \
+    build-essential \
     git \
     nodejs \
     npm \
