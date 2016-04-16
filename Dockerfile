@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && ln -s /usr/bin/nodejs /usr/bin/node
 
 RUN docker-php-ext-install \
     mbstring \
