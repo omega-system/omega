@@ -28,7 +28,7 @@ RUN php composer.phar install --no-dev --no-autoloader --no-scripts \
 
 ADD . .
 
-RUN gulp \
+RUN gulp --production \
   && npm uninstall -g gulp \
   && rm -r node_modules public/dist \
   && php composer.phar dump-autoload -o \
