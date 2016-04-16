@@ -5,7 +5,6 @@ RUN curl -sL https://deb.nodesource.com/setup_5.x | bash \
     build-essential \
     git \
     nodejs \
-    npm \
     zlib1g-dev \
   && rm -rf /var/lib/apt/lists/* \
   && ln -s /usr/bin/nodejs /usr/bin/node
