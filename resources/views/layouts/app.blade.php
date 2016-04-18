@@ -9,9 +9,14 @@
     <link href="{{ elixir('dist/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="page header">
+<div class="ui page header navbar menu">
     <div class="ui container">
-        <div class="ui right floated menu text">
+        <div class="ui menu icon text">
+            <a href="{{ route('index') }}" class="header item">
+                <img class="logo" src="{{ asset('images/logo.png') }}">
+            </a>
+        </div>
+        <div class="ui right menu text">
             @if (auth()->check())
                 <div class="ui dropdown item">
                     {{ auth()->user()->name }} ({{ auth()->user()->number }})
@@ -23,11 +28,6 @@
             @else
                 <a class="item" href="{{ route('login') }}">登录</a>
             @endif
-        </div>
-        <div class="ui menu icon text">
-            <a href="{{ route('index') }}" class="header item">
-                <img class="logo" src="{{ asset('images/logo.png') }}">
-            </a>
         </div>
     </div>
 </div>

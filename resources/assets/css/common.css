@@ -1,4 +1,8 @@
 .page.header {
+  border: 0 none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   margin-bottom: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
