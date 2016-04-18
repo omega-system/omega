@@ -151,6 +151,7 @@ return [
         /*
          * Third Party Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
 

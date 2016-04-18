@@ -32,11 +32,7 @@
     </div>
 </div>
 @if (auth()->check())
-    <div class="ui tabular menu">
-        <div class="ui container">
-            <a class="active item">仪表盘</a>
-        </div>
-    </div>
+    @include('layouts.partials.nav')
 @endif
 <div class="ui main container">
     @yield('content')

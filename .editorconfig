@@ -12,5 +12,5 @@ insert_final_newline = true
 [Makefile]
 indent_style = tab
 
-[*.php]
+[*.{json,php}]
 indent_size = 4

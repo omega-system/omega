@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -9,7 +12,8 @@
         "laravel/framework": "5.2.*",
         "bican/roles": "2.1.*",
         "doctrine/dbal": "^2.5",
-        "fideloper/proxy": "^3.1"
+        "fideloper/proxy": "^3.1",
+        "laravelcollective/html": "^5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,7 +28,10 @@
         ],
         "psr-4": {
             "Omega\\": "app/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
