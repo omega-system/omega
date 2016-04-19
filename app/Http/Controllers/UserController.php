@@ -2,7 +2,6 @@
 
 namespace Omega\Http\Controllers;
 
-use Illuminate\Contracts\Pagination\Presenter;
 use Illuminate\Http\Request;
 use Omega\Http\Requests;
 use Omega\Repositories\UserRepositoryInterface;
@@ -16,6 +15,10 @@ class UserController extends Controller
 
     public function __construct(UserRepositoryInterface $repo)
     {
+        $this->middleware('permission:create.users|delete.users', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create.users', ['only' => ['create', 'store', 'edit', 'update']]);
+        $this->middleware('permission:delete.users', ['only' => 'destroy']);
+
         $this->repo = $repo;
     }
 
@@ -56,6 +59,10 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //
+        $user = $this->repo->getById($id);
+        if ($user->deletable) {
+            $user->delete();
+        }
+        return redirect()->back();
     }
 }
