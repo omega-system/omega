@@ -13,7 +13,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        app()->bind(
+            'PaginationPresenter',
+            'Omega\Presenters\Pagination\SemanticUIPresenter'
+        );
+
+        app()->bind(
+            'Omega\Repositories\UserRepositoryInterface',
+            'Omega\Repositories\DbUserRepository'
+        );
     }
 
     /**
