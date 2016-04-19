@@ -13,4 +13,9 @@ class DbRepository
     {
         $this->entity = $entity;
     }
+
+    public function getAll()
+    {
+        return $this->entity->all();
+    }
 }

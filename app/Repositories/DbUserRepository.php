@@ -14,11 +14,6 @@ class DbUserRepository extends DbRepository implements UserRepositoryInterface
         parent::__construct($entity);
     }
 
-    public function getAll()
-    {
-        return $this->entity->all();
-    }
-
     public function getPaginated()
     {
         return $this->entity->paginate(env('OMEGA_PAGINATE', 10));

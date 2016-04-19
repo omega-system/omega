@@ -13,6 +13,7 @@
 <div class="ui main container">
     @yield('content')
 </div>
+@include('layouts.partials.footer')
 <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js"></script>
 <script src="{{ elixir('dist/js/all.js') }}"></script>
