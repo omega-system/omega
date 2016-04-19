@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,31 +9,7 @@
     <link href="{{ elixir('dist/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="ui page header navbar menu">
-    <div class="ui container">
-        <div class="ui menu icon text">
-            <a href="{{ route('index') }}" class="header item">
-                <img class="logo" src="{{ asset('images/logo.png') }}">
-            </a>
-        </div>
-        <div class="ui right menu text">
-            @if (auth()->check())
-                <div class="ui dropdown item">
-                    {{ auth()->user()->name }} ({{ auth()->user()->number }})
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="{{ route('logout') }}">退出</a>
-                    </div>
-                </div>
-            @else
-                <a class="item" href="{{ route('login') }}">登录</a>
-            @endif
-        </div>
-    </div>
-</div>
-@if (auth()->check())
-    @include('layouts.partials.nav')
-@endif
+@include('layouts.partials.header')
 <div class="ui main container">
     @yield('content')
 </div>
