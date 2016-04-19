@@ -1,10 +1,8 @@
 <?php
 namespace Omega\Repositories;
 
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends RepositoryInterface
 {
-    public function getAll();
-
     public function getPaginated();
 
     public function getById($id);

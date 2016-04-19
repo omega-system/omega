@@ -38,7 +38,6 @@ class AuthController extends Controller
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -54,7 +53,8 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'number' => 'required|max:8|unique:users',
+            'number' => 'required|digits:8|unique:users,number',
+            'name' => 'required|string|max:10',
             'password' => 'required|min:6|confirmed',
         ]);
     }

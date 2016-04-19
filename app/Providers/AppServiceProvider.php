@@ -31,5 +31,15 @@ class AppServiceProvider extends ServiceProvider
             'Omega\Repositories\UserRepositoryInterface',
             'Omega\Repositories\DbUserRepository'
         );
+
+        $this->app->bind(
+            'Omega\Repositories\RoleRepositoryInterface',
+            'Omega\Repositories\DbRoleRepository'
+        );
+
+        $this->app->bind(
+            'Omega\Repositories\PermissionRepositoryInterface',
+            'Omega\Repositories\DbPermissionRepository'
+        );
     }
 }
