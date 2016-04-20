@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateTrimestersTable extends Migration
+class CreateCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateTrimestersTable extends Migration
      */
     public function up()
     {
-        Schema::create('trimesters', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->increments('id')->unsigned()->index();
-            $table->integer('year')->unsigned();
-            $table->integer('sequence')->unsigned();
-            $table->string('trimester_name');
+            $table->string('course_number', 10)->unique();
+            $table->string('course_name', 30);
+            $table->integer('credits')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTrimestersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('trimesters');
+        Schema::drop('courses');
     }
 }
