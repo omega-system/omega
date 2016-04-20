@@ -5,8 +5,8 @@
         <thead>
         <tr>
             <th class="three wide">学年</th>
-            <th class="six wide">顺序号</th>
-            <th class="four wide">学期名称</th>
+            <th class="three wide">顺序号</th>
+            <th class="seven wide">学期名称</th>
             <th class="right aligned three wide">
                 @permission('create.trimesters')
                 <a class="primary ui icon button" href="{{ route('dashboard.trimester.create') }}">
