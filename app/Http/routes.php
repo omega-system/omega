@@ -9,3 +9,4 @@ $this->get('/', ['as' => 'index', 'middleware' => ['guest'], function () {
 
 $this->get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
 $this->resource('user', 'UserController', ['as' => 'dashboard']);
+$this->resource('trimester', 'TrimesterController', ['as' => 'dashboard']);

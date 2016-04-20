@@ -54,13 +54,13 @@ class UserController extends Controller
     }
 
     /**
-     * @param string $number
+     * @param string $id
      * @return array
      */
-    protected function rules($number = '')
+    protected function rules($id = '')
     {
         return [
-            'number' => 'required|digits:8|unique:users,number,' . $number,
+            'number' => 'required|digits:8|unique:users,number,' . $id,
             'name' => 'required|string|max:10',
         ];
     }
