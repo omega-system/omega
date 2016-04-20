@@ -15,17 +15,22 @@
             <a class="image" href="{{ route('index') }}"><img class="logo" src="{{ asset('images/logo.png') }}"></a>
             <div class="content">登录 omega</div>
         </h2>
-        <form class="ui large form" method="post">
+        <form class="ui large form {{ set_error($errors->count()) }}" method="post">
             {!! csrf_field() !!}
+            <div class="ui error message">
+                @foreach ($errors->all() as $message)
+                    <li>{{ $message }}</li>
+                @endforeach
+            </div>
             <div class="field">
-                <div class="ui left icon input">
+                <div class="ui left icon input {{ set_error($errors->has('number')) }}">
                     <i class="user icon"></i>
                     <input type="text" class="form-control" maxlength="8" name="number" placeholder="学号 / 工号"
                            value="{{ old('number') }}">
                 </div>
             </div>
             <div class="field">
-                <div class="ui left icon input">
+                <div class="ui left icon input {{ set_error($errors->has('password')) }}">
                     <i class="lock icon"></i>
                     <input type="password" class="form-control" name="password" placeholder="密码">
                 </div>
