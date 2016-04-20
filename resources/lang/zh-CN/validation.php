@@ -15,12 +15,12 @@ return [
 
     'accepted'             => ':attribute必须可接受。',
     'active_url'           => ':attribute不是有效的 URL。',
-    'after'                => ':attribute必须是 :date 之后的日期。',
+    'after'                => ':attribute必须在 :date 之后。',
     'alpha'                => ':attribute只能包含字母。',
     'alpha_dash'           => ':attribute只能包含字母、数字和横线。',
     'alpha_num'            => ':attribute只能包含字母和数字。',
     'array'                => ':attribute必须是数组。',
-    'before'               => ':attribute必须是 :date 之前的日期。',
+    'before'               => ':attribute必须是在 :date 之前。',
     'between'              => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file'    => 'The :attribute must be between :min and :max kilobytes.',
@@ -28,7 +28,7 @@ return [
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'The :attribute field must be true or false.',
-    'confirmed'            => 'The :attribute confirmation does not match.',
+    'confirmed'            => ':attribute不匹配。',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
@@ -45,10 +45,10 @@ return [
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
-        'array'   => 'The :attribute may not have more than :max items.',
+        'numeric' => ':attribute不能大于 :max。',
+        'file'    => ':attribute不能超过 :max KB。',
+        'string'  => ':attribute不能超过 :max 个字符。',
+        'array'   => ':attribute不能超过 :max 项。',
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'min'                  => [
@@ -110,7 +110,8 @@ return [
 
     'attributes' => [
         'number' => '学号 / 工号',
-        'name' => '姓名'
+        'name' => '姓名',
+        'password' => '密码',
     ],
 
 ];
