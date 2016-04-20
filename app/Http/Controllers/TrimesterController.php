@@ -52,7 +52,9 @@ class TrimesterController extends Controller
     protected function rules()
     {
         return [
-            '',
+            'year' => 'required|digits:4',
+            'sequence' => 'required|numeric',
+            'trimester_name' => 'required|max:20',
         ];
     }
 

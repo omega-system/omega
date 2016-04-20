@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseClassTimeTable extends Migration
+class CreateCourseClassTimetableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,15 @@ class CreateCourseClassTimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_class_time', function (Blueprint $table) {
+        Schema::create('course_class_timetable', function (Blueprint $table) {
             $table->integer('course_class_id')->unsigned()->index();
             $table->foreign('course_class_id')->references('id')->on('course_classes')->onDelete('cascade');
             $table->integer('day')->unsigned();
-            $table->integer('begin')->unsigned();
-            $table->integer('end')->unsigned();
+            $table->integer('sequence')->unsigned();
             $table->timestamps();
 
-            $table->primary(['course_class_id', 'day', 'begin', 'end']);
+            $table->primary(['course_class_id', 'day', 'sequence']);
+            $table->index(['day', 'sequence']);
         });
     }
 
@@ -31,6 +31,6 @@ class CreateCourseClassTimeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('course_class_time');
+        Schema::drop('course_class_timetable');
     }
 }

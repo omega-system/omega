@@ -7,5 +7,8 @@
         @permission('create.trimesters|delete.trimesters')
         <a class="{{ set_active_route('dashboard.trimester.*') }} item" href="{{ route('dashboard.trimester.index') }}">学期管理</a>
         @endpermission
+        @permission('create.courses|delete.courses')
+        <a class="{{ set_active_route('dashboard.course.*') }} item" href="{{ route('dashboard.course.index') }}">课程管理</a>
+        @endpermission
     </div>
 </div>

@@ -30,4 +30,9 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
         if (!$user || !$user->canDeleteUsers()) return false;
         return ($this->id !== $user->id) && ($this->level() <= $user->level());
     }
+
+    public function courseClasses()
+    {
+        return $this->hasMany('Omega\CourseClass', 'teacher_id');
+    }
 }
