@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id')->unsigned()->index();
             $table->string('course_number', 10)->unique();
             $table->string('course_name', 30);
-            $table->integer('credits')->unsigned();
+            $table->integer('credit')->unsigned();
             $table->timestamps();
         });
     }
