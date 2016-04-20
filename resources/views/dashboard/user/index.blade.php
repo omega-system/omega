@@ -7,7 +7,14 @@
             <th class="three wide">学号 / 工号</th>
             <th class="six wide">姓名</th>
             <th class="four wide">角色</th>
-            <th class="three wide"></th>
+            <th class="right aligned three wide">
+                @permission('create.users')
+                <a class="primary ui icon button" href="{{ route('dashboard.user.create') }}">
+                    <i class="plus icon"></i>
+                    创建新用户
+                </a>
+                @endpermission
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -20,9 +27,9 @@
                     @permission('create.users')
                     <a class="ui button" href="{{ route('dashboard.user.edit', $user->id) }}">编辑</a>
                     @endpermission
-                    @if ($user->deletable)
-                        <a class="negative ui button" href="{{ route('dashboard.user.destroy', $user->id) }}">删除</a>
-                    @endif
+                    {{--@if ($user->deletable)--}}
+                        {{--<a class="negative ui button" href="{{ route('dashboard.user.destroy', $user->id) }}">删除</a>--}}
+                    {{--@endif--}}
                 </td>
             </tr>
         @endforeach

@@ -6,40 +6,26 @@
           action="{{ route('dashboard.user.update', $user->id) }}">
         {!! csrf_field() !!}
         {!! method_field('put') !!}
-        <div class="ui error message">
-            @foreach ($errors->all() as $message)
-                <li>{{ $message }}</li>
-            @endforeach
-        </div>
-        <div class="field {{ set_error($errors->has('number')) }}">
-            <label>学号 / 工号</label>
-            <input type="text" name="number" value="{{ old('number', $user->number) }}">
-        </div>
-        <div class="field {{ set_error($errors->has('name')) }}">
-            <label>姓名</label>
-            <input type="text" name="name" value="{{ old('name', $user->name) }}">
-        </div>
-        <div class="field {{ set_error($errors->has('roles')) }}">
-            <label>角色</label>
-            @foreach ($roles as $role)
-                <div class="ui checkbox">
-                    <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                        {{ set_checked($user->roles->contains($role)) }}>
-                    <label>{{ $role->name }}</label>
-                </div>
-            @endforeach
-        </div>
-        <div class="field {{ set_error($errors->has('permissions')) }}">
-            <label>权限</label>
-            @foreach ($permissions as $permission)
-                <div class="ui checkbox">
-                    <input type="checkbox" name="user_permissions[]" value="{{ $permission->id }}"
-                        {{ set_checked($user->hasPermission($permission->id)) }}
-                        {{ set_disabled($user->rolePermissions()->get()->contains($permission)) }}>
-                    <label>{{ $permission->name }}</label>
-                </div>
-            @endforeach
-        </div>
+        @include('dashboard.user.fields')
         <input class="primary ui button" type="submit" value="保存">
+        @if ($user->deletable)
+            <input class="negative ui button" type="button" value="删除"
+                   onclick="$('#delete_confirmation').modal('show');">
+        @endif
+    </form>
+
+    <form class="ui modal" id="delete_confirmation" method="post"
+          action="{{ route('dashboard.user.destroy', $user->id) }}">
+        {!! csrf_field() !!}
+        {!! method_field('delete') !!}
+        <div class="header">删除确认</div>
+        <div class="content">
+            <div class="ui header">删除用户</div>
+            <p>确定删除用户 {{ $user->name }} ({{ $user->number }}) 吗？</p>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">取消</div>
+            <button type="submit" class="ui negative button">删除</button>
+        </div>
     </form>
 @endsection

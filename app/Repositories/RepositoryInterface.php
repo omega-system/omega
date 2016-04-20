@@ -4,5 +4,9 @@ namespace Omega\Repositories;
 
 interface RepositoryInterface
 {
+    public function new();
+
+    public function create(array $parameters);
+
     public function getAll();
 }
