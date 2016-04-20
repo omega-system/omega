@@ -26,20 +26,14 @@ class UserController extends Controller
     /**
      * UserController constructor.
      * @param UserRepositoryInterface $userRepository
-     * @param RoleRepositoryInterface $roleRepository
-     * @param PermissionRepositoryInterface $permissionRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository,
-                                RoleRepositoryInterface $roleRepository,
-                                PermissionRepositoryInterface $permissionRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->middleware('permission:create.users|delete.users', ['only' => ['index', 'show']]);
         $this->middleware('permission:create.users', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('permission:delete.users', ['only' => 'destroy']);
 
         $this->userRepository = $userRepository;
-        $this->roleRepository = $roleRepository;
-        $this->permissionRepository = $permissionRepository;
     }
 
     public function index()
@@ -49,14 +43,22 @@ class UserController extends Controller
         return view('dashboard.user.index', compact('users', 'presenter'));
     }
 
-    public function create()
+    public function create(RoleRepositoryInterface $roleRepository,
+                           PermissionRepositoryInterface $permissionRepository)
     {
-        //
+        $user = $this->userRepository->new();
+        $roles = $roleRepository->getAll();
+        $permissions = $permissionRepository->getAll();
+        return view('dashboard.user.create', compact('user', 'roles', 'permissions'));
     }
 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, $this->rules());
+        $user = $this->userRepository->create($request->input());
+        $user->roles()->sync($request->input('roles', []));
+        $user->userPermissions()->sync($request->input('user_permissions', []));
+        return redirect()->route('dashboard.user.index');
     }
 
     public function show($id)
@@ -64,11 +66,13 @@ class UserController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(RoleRepositoryInterface $roleRepository,
+                         PermissionRepositoryInterface $permissionRepository,
+                         $id)
     {
         $user = $this->userRepository->getById($id);
-        $roles = $this->roleRepository->getAll();
-        $permissions = $this->permissionRepository->getAll();
+        $roles = $roleRepository->getAll();
+        $permissions = $permissionRepository->getAll();
         return view('dashboard.user.edit', compact('user', 'roles', 'permissions'));
     }
 
@@ -100,6 +104,6 @@ class UserController extends Controller
         if ($user->deletable) {
             $user->delete();
         }
-        return redirect()->back();
+        return redirect()->route('dashboard.user.index');
     }
 }
