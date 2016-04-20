@@ -13,7 +13,7 @@ class CreateCourseClassesTable extends Migration
     public function up()
     {
         Schema::create('course_classes', function (Blueprint $table) {
-            $table->increments('id')->unsigned()->index();
+            $table->increments('id')->unsigned();
             $table->integer('trimester_id')->unsigned();
             $table->foreign('trimester_id')->references('id')->on('trimesters')->onDelete('cascade');
             $table->integer('course_id')->unsigned();

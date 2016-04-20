@@ -13,7 +13,7 @@ class CreateTrimestersTable extends Migration
     public function up()
     {
         Schema::create('trimesters', function (Blueprint $table) {
-            $table->increments('id')->unsigned()->index();
+            $table->increments('id')->unsigned();
             $table->integer('year')->unsigned();
             $table->integer('sequence')->unsigned();
             $table->string('trimester_name');

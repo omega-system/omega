@@ -13,7 +13,7 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->increments('id')->unsigned()->index();
+            $table->increments('id')->unsigned();
             $table->string('course_number', 10)->unique();
             $table->string('course_name', 30);
             $table->integer('credit')->unsigned();
