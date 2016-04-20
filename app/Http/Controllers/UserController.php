@@ -14,14 +14,6 @@ class UserController extends Controller
      * @var UserRepositoryInterface
      */
     private $userRepository;
-    /**
-     * @var RoleRepositoryInterface
-     */
-    private $roleRepository;
-    /**
-     * @var PermissionRepositoryInterface
-     */
-    private $permissionRepository;
 
     /**
      * UserController constructor.
@@ -38,7 +30,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->userRepository->getPaginated();
+        $users = $this->userRepository->getPaginatedWithRoles();
         $presenter = app('PaginationPresenter', [$users]);
         return view('dashboard.user.index', compact('users', 'presenter'));
     }
@@ -59,6 +51,18 @@ class UserController extends Controller
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
         return redirect()->route('dashboard.user.index');
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     */
+    protected function rules($id = '')
+    {
+        return [
+            'number' => 'required|digits:8|unique:users,number,' . $id,
+            'name' => 'required|string|max:10',
+        ];
     }
 
     public function show($id)
@@ -84,18 +88,6 @@ class UserController extends Controller
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
         return redirect()->back();
-    }
-
-    /**
-     * @param string $number
-     * @return array
-     */
-    protected function rules($number = '')
-    {
-        return [
-            'number' => 'required|digits:8|unique:users,number,' . $number,
-            'name' => 'required|string|max:10',
-        ];
     }
 
     public function destroy($id)

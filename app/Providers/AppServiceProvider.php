@@ -41,5 +41,10 @@ class AppServiceProvider extends ServiceProvider
             'Omega\Repositories\PermissionRepositoryInterface',
             'Omega\Repositories\DbPermissionRepository'
         );
+
+        $this->app->bind(
+            'Omega\Repositories\TrimesterRepositoryInterface',
+            'Omega\Repositories\DbTrimesterRepository'
+        );
     }
 }

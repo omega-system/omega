@@ -27,9 +27,6 @@
                     @permission('create.users')
                     <a class="ui button" href="{{ route('dashboard.user.edit', $user->id) }}">编辑</a>
                     @endpermission
-                    {{--@if ($user->deletable)--}}
-                        {{--<a class="negative ui button" href="{{ route('dashboard.user.destroy', $user->id) }}">删除</a>--}}
-                    {{--@endif--}}
                 </td>
             </tr>
         @endforeach
