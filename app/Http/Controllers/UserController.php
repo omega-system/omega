@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->userRepository->getPaginated();
+        $users = $this->userRepository->getPaginatedWithRoles();
         $presenter = app('PaginationPresenter', [$users]);
         return view('dashboard.user.index', compact('users', 'presenter'));
     }
