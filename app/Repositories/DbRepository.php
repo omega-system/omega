@@ -28,4 +28,12 @@ class DbRepository
     {
         return $this->entity->all();
     }
+
+    public function paginate($collection = null)
+    {
+        if ($collection === null) {
+            $collection = $this->entity;
+        }
+        return $collection->paginate(env('OMEGA_PAGINATE', 10));
+    }
 }

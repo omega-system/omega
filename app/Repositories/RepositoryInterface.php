@@ -9,4 +9,6 @@ interface RepositoryInterface
     public function create(array $parameters);
 
     public function getAll();
+
+    public function paginate($collection = null);
 }

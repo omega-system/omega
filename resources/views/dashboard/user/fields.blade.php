@@ -11,28 +11,24 @@
     <label>姓名</label>
     <input type="text" name="name" value="{{ old('name', $user->name) }}">
 </div>
-<div class="field {{ set_error($errors->has('roles')) }}">
-    <label>角色</label>
-    @foreach ($roles as $role)
-        <div>
-            <div class="ui checkbox">
-                <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                    {{ set_checked($user->roles->contains($role)) }}>
-                <label>{{ $role->name }}</label>
-            </div>
+<h3>角色</h3>
+@foreach ($roles as $role)
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                {{ set_checked($user->roles->contains($role)) }}>
+            <label>{{ $role->name }}</label>
         </div>
-    @endforeach
-</div>
-<div class="field {{ set_error($errors->has('permissions')) }}">
-    <label>权限</label>
-    @foreach ($permissions as $permission)
-        <div>
-            <div class="ui checkbox">
-                <input type="checkbox" name="user_permissions[]" value="{{ $permission->id }}"
-                    {{ set_checked($user->hasPermission($permission->id)) }}
-                    {{ set_disabled($user->rolePermissions()->get()->contains($permission)) }}>
-                <label>{{ $permission->name }}</label>
-            </div>
+    </div>
+@endforeach
+<h3>权限</h3>
+@foreach ($permissions as $permission)
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" name="user_permissions[]" value="{{ $permission->id }}"
+                {{ set_checked($user->hasPermission($permission->id)) }}
+                {{ set_disabled($user->rolePermissions()->get()->contains($permission)) }}>
+            <label>{{ $permission->name }}</label>
         </div>
-    @endforeach
-</div>
+    </div>
+@endforeach
