@@ -14,7 +14,7 @@ class DbRepository
         $this->entity = $entity;
     }
 
-    public function new()
+    public function newInstance()
     {
         return new $this->entity;
     }

@@ -35,7 +35,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        $course = $this->courseRepository->new();
+        $course = $this->courseRepository->newInstance();
         return view('dashboard.course.create', compact('course'));
     }
 
