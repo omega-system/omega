@@ -70,10 +70,10 @@ return [
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same'                 => 'The :attribute and :other must match.',
     'size'                 => [
-        'numeric' => 'The :attribute must be :size.',
-        'file'    => 'The :attribute must be :size kilobytes.',
-        'string'  => 'The :attribute must be :size characters.',
-        'array'   => 'The :attribute must contain :size items.',
+        'numeric' => ':attribute必须是 :size。',
+        'file'    => ':attribute必须是 :size KB。',
+        'string'  => ':attribute必须是 :size 个字符。',
+        'array'   => ':attribute必须有 :size 项。',
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
@@ -112,6 +112,14 @@ return [
         'number' => '学号 / 工号',
         'name' => '姓名',
         'password' => '密码',
+
+        'year' => '学年',
+        'sequence' => '顺序号',
+        'trimester_name' => '学期名称',
+
+        'course_number' => '课程号',
+        'course_name' => '课程名',
+        'credit' => '学分',
     ],
 
 ];

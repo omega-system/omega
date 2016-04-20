@@ -3,7 +3,7 @@ namespace Omega\Repositories;
 
 interface UserRepositoryInterface extends RepositoryInterface
 {
-    public function getPaginatedWithRoles();
+    public function getAllWithRoles();
 
     public function getById($id);
 }

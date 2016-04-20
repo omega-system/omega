@@ -28,7 +28,7 @@ class TrimesterController extends Controller
 
     public function index()
     {
-        $trimesters = $this->trimesterRepository->getPaginated();
+        $trimesters = $this->trimesterRepository->paginate();
         $presenter = app('PaginationPresenter', [$trimesters]);
         return view('dashboard.trimester.index', compact('trimesters', 'presenter'));
     }
@@ -52,7 +52,9 @@ class TrimesterController extends Controller
     protected function rules()
     {
         return [
-            '',
+            'year' => 'required|digits:4',
+            'sequence' => 'required|numeric',
+            'trimester_name' => 'required|max:20',
         ];
     }
 

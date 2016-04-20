@@ -14,11 +14,6 @@ class DbTrimesterRepository extends DbRepository implements TrimesterRepositoryI
         parent::__construct($entity);
     }
 
-    public function getPaginated()
-    {
-        return $this->entity->paginate(env('OMEGA_PAGINATE', 10));
-    }
-
     public function getById($id)
     {
         return $this->entity->findOrFail($id);

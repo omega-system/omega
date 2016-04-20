@@ -46,5 +46,10 @@ class AppServiceProvider extends ServiceProvider
             'Omega\Repositories\TrimesterRepositoryInterface',
             'Omega\Repositories\DbTrimesterRepository'
         );
+
+        $this->app->bind(
+            'Omega\Repositories\CourseRepositoryInterface',
+            'Omega\Repositories\DbCourseRepository'
+        );
     }
 }
