@@ -47,6 +47,7 @@ class CourseController extends Controller
     }
 
     /**
+     * @param string $course_number
      * @return array
      */
     protected function rules($course_number = '')
