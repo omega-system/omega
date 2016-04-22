@@ -18,4 +18,12 @@ class DbTrimesterRepository extends DbRepository implements TrimesterRepositoryI
     {
         return $this->entity->findOrFail($id);
     }
+
+    public function getAllDesc()
+    {
+        return $this->entity
+            ->orderBy('year', 'desc')
+            ->orderBy('sequence', 'desc')
+            ->get();
+    }
 }

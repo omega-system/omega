@@ -74,7 +74,7 @@ class CourseController extends Controller
     {
         $this->validate($request, $this->rules($courseNumber));
         $course = $this->courseRepository->getByCourseNumber($courseNumber);
-        $course->update($request->input());
+        $course->update($request->except(['course_number']));
         return redirect()->route('dashboard.course.edit', $course->course_number);
     }
 

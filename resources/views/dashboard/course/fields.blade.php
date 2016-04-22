@@ -5,7 +5,8 @@
 </div>
 <div class="field {{ set_error($errors->has('course_number')) }}">
     <label>课程号</label>
-    <input type="text" name="course_number" value="{{ old('course_number', $course->course_number) }}">
+    <input type="text" name="course_number" value="{{ old('course_number', $course->course_number) }}"
+        {{ $course->course_number ? 'readonly' : '' }}>
 </div>
 <div class="field {{ set_error($errors->has('course_name')) }}">
     <label>课程名</label>

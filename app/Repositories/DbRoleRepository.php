@@ -13,4 +13,9 @@ class DbRoleRepository extends DbRepository implements RoleRepositoryInterface
     {
         parent::__construct($entity);
     }
+
+    public function getBySlug($slug)
+    {
+        return $this->entity->whereSlug($slug)->firstOrFail();
+    }
 }
