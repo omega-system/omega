@@ -4,6 +4,9 @@ namespace Omega\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Omega\Http\Requests;
+use Omega\Repositories\CourseClassRepositoryInterface;
+use Omega\Repositories\CourseRepositoryInterface;
+use Omega\Repositories\RoleRepositoryInterface;
 use Omega\Repositories\TrimesterRepositoryInterface;
 
 class CourseClassController extends Controller
@@ -33,10 +36,15 @@ class CourseClassController extends Controller
         return view('dashboard.class.index', compact('classes', 'presenter'));
     }
 
-    public function create()
+    public function create(TrimesterRepositoryInterface $trimesterRepository,
+                           CourseRepositoryInterface $courseRepository,
+                           RoleRepositoryInterface $roleRepository)
     {
-        $courseClass = $this->courseClassRepository->new();
-        return view('dashboard.class.create', compact('courseClass'));
+        $class = $this->courseClassRepository->newInstance();
+        $trimesters = $trimesterRepository->getAllDesc();
+        $courses = $courseRepository->getAll();
+        $teachers = $roleRepository->getBySlug('teacher')->users;
+        return view('dashboard.class.create', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
     public function store(Request $request)
@@ -52,7 +60,10 @@ class CourseClassController extends Controller
     protected function rules()
     {
         return [
-            '',
+            'trimester_id' => 'required|exists:trimesters,id',
+            'course_number' => 'required|exists:courses',
+            'class_number' => 'required|digits:4|unique_with:course_classes,trimester_id,course_number',
+            'teacher_id' => 'required|exists:users,id',
         ];
     }
 
@@ -61,10 +72,16 @@ class CourseClassController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(TrimesterRepositoryInterface $trimesterRepository,
+                         CourseRepositoryInterface $courseRepository,
+                         RoleRepositoryInterface $roleRepository,
+                         $id)
     {
         $class = $this->courseClassRepository->getById($id);
-        return view('dashboard.class.edit', compact('class'));
+        $trimesters = $trimesterRepository->getAllDesc();
+        $courses = $courseRepository->getAll();
+        $teachers = $roleRepository->getBySlug('teacher')->users;
+        return view('dashboard.class.edit', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
     public function update(Request $request, $id)

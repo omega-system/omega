@@ -5,7 +5,7 @@
         <thead>
         <tr>
             <th class="three wide">课程号</th>
-            <th class="sevem wide">课程名称</th>
+            <th class="seven wide">课程名称</th>
             <th class="three wide">学分</th>
             <th class="right aligned three wide">
                 @permission('create.courses')

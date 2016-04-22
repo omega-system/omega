@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e67f7bf280ab1a4721bd9671718eec1e",
-    "content-hash": "cc5e83bb355efdffdf7ff9baff743b1c",
+    "hash": "0e3d30f60912b3fdac14c7e3b517fc88",
+    "content-hash": "2798eea8a9f462dfec8a15ba4881a24a",
     "packages": [
         {
             "name": "bican/roles",
@@ -607,6 +607,52 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "felixkiss/uniquewith-validator",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixkiss/uniquewith-validator.git",
+                "reference": "7b166096749923512615fc0fba992fd65b0c3b9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/felixkiss/uniquewith-validator/7b166096749923512615fc0fba992fd65b0c3b9e.zip",
+                "reference": "7b166096749923512615fc0fba992fd65b0c3b9e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.x",
+                "illuminate/validation": "5.x",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Felixkiss\\UniqueWithValidator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Felix Kiss",
+                    "email": "felix@felixkiss.com"
+                }
+            ],
+            "description": "Custom Laravel Validator for combined unique indexes",
+            "homepage": "https://github.com/felixkiss/uniquewith-validator",
+            "keywords": [
+                "laravel"
+            ],
+            "time": "2016-02-11 14:14:06"
         },
         {
             "name": "fideloper/proxy",

@@ -4,7 +4,7 @@ namespace Omega\Repositories;
 
 interface RepositoryInterface
 {
-    public function new();
+    public function newInstance();
 
     public function create(array $parameters);
 

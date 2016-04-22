@@ -154,6 +154,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -35,7 +35,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        $course = $this->courseRepository->new();
+        $course = $this->courseRepository->newInstance();
         return view('dashboard.course.create', compact('course'));
     }
 
@@ -47,6 +47,7 @@ class CourseController extends Controller
     }
 
     /**
+     * @param string $course_number
      * @return array
      */
     protected function rules($course_number = '')
@@ -73,7 +74,7 @@ class CourseController extends Controller
     {
         $this->validate($request, $this->rules($courseNumber));
         $course = $this->courseRepository->getByCourseNumber($courseNumber);
-        $course->update($request->input());
+        $course->update($request->except(['course_number']));
         return redirect()->route('dashboard.course.edit', $course->course_number);
     }
 

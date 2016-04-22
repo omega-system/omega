@@ -38,7 +38,7 @@ class UserController extends Controller
     public function create(RoleRepositoryInterface $roleRepository,
                            PermissionRepositoryInterface $permissionRepository)
     {
-        $user = $this->userRepository->new();
+        $user = $this->userRepository->newInstance();
         $roles = $roleRepository->getAll();
         $permissions = $permissionRepository->getAll();
         return view('dashboard.user.create', compact('user', 'roles', 'permissions'));

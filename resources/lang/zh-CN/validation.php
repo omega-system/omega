@@ -120,6 +120,9 @@ return [
         'course_number' => '课程号',
         'course_name' => '课程名',
         'credit' => '学分',
+
+        'trimester_id' => '学期',
+        'class_number' => '班级号',
     ],
 
 ];

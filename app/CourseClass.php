@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class CourseClass extends Model
 {
     protected $fillable = [
-        'trimester_id', 'course_number', 'class_number', 'user_id', 'location'
+        'trimester_id', 'course_number', 'class_number', 'teacher_id', 'location'
     ];
 
     public function trimester()
@@ -16,7 +16,7 @@ class CourseClass extends Model
 
     public function course()
     {
-        return $this->belongsTo('Omega\Course');
+        return $this->belongsTo('Omega\Course', 'course_number');
     }
 
     public function teacher()

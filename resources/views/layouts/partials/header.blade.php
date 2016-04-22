@@ -2,8 +2,11 @@
     <div class="ui navbar menu">
         <div class="ui container">
             <div class="ui menu icon text">
-                <a href="{{ route('index') }}" class="header item">
-                    <img class="logo" src="{{ asset('images/logo.png') }}">
+                <a class="item" href="{{ route('index') }}">
+                    <div class="item">
+                        <img class="logo" src="{{ asset('images/logo.png') }}">
+                    </div>
+                    <div class="text item">教务管理系统</div>
                 </a>
             </div>
             <div class="ui right menu text">

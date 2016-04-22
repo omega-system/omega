@@ -104,4 +104,6 @@ return [
         ],
     ],
 
+    'model' => 'Omega\User',
+
 ];

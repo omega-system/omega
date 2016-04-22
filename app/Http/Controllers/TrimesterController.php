@@ -35,7 +35,7 @@ class TrimesterController extends Controller
 
     public function create()
     {
-        $trimester = $this->trimesterRepository->new();
+        $trimester = $this->trimesterRepository->newInstance();
         return view('dashboard.trimester.create', compact('trimester'));
     }
 

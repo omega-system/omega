@@ -10,5 +10,8 @@
         @permission('create.courses|delete.courses')
         <a class="{{ set_active_route('dashboard.course.*') }} item" href="{{ route('dashboard.course.index') }}">课程管理</a>
         @endpermission
+        @permission('create.classes|delete.classes')
+        <a class="{{ set_active_route('dashboard.class.*') }} item" href="{{ route('dashboard.class.index') }}">班级管理</a>
+        @endpermission
     </div>
 </div>
