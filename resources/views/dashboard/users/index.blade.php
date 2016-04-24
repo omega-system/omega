@@ -9,7 +9,7 @@
             <th class="four wide">角色</th>
             <th class="right aligned three wide">
                 @permission('create.users')
-                <a class="primary ui icon button" href="{{ route('dashboard.user.create') }}">
+                <a class="primary ui icon button" href="{{ route('dashboard.users.create') }}">
                     <i class="plus icon"></i>
                     创建新用户
                 </a>
@@ -25,7 +25,7 @@
                 <td>{{ $user->roles_string }}</td>
                 <td class="right aligned">
                     @permission('create.users')
-                    <a class="ui button" href="{{ route('dashboard.user.edit', $user->id) }}">编辑</a>
+                    <a class="ui button" href="{{ route('dashboard.users.edit', $user->id) }}">编辑</a>
                     @endpermission
                 </td>
             </tr>

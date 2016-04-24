@@ -3,10 +3,10 @@
 @section('content')
     <h2 class="ui header">编辑 {{ $user->name }} 的个人信息</h2>
     <form class="ui form {{ set_error($errors->count()) }}" method="post"
-          action="{{ route('dashboard.user.update', $user->id) }}">
+          action="{{ route('dashboard.users.update', $user->id) }}">
         {!! csrf_field() !!}
         {!! method_field('put') !!}
-        @include('dashboard.user.fields')
+        @include('dashboard.users.fields')
         <input class="primary ui button" type="submit" value="保存">
         @if ($user->deletable)
             <input class="negative ui button" type="button" value="删除"
@@ -15,7 +15,7 @@
     </form>
 
     <form class="ui modal" id="delete_confirmation" method="post"
-          action="{{ route('dashboard.user.destroy', $user->id) }}">
+          action="{{ route('dashboard.users.destroy', $user->id) }}">
         {!! csrf_field() !!}
         {!! method_field('delete') !!}
         <div class="header">删除确认</div>

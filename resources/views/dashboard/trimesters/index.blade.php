@@ -9,7 +9,7 @@
             <th class="seven wide">学期名称</th>
             <th class="right aligned three wide">
                 @permission('create.trimesters')
-                <a class="primary ui icon button" href="{{ route('dashboard.trimester.create') }}">
+                <a class="primary ui icon button" href="{{ route('dashboard.trimesters.create') }}">
                     <i class="plus icon"></i>
                     创建新学期
                 </a>
@@ -25,7 +25,7 @@
                 <td>{{ $trimester->trimester_name }}</td>
                 <td class="right aligned">
                     @permission('create.trimesters')
-                    <a class="ui button" href="{{ route('dashboard.trimester.edit', $trimester->id) }}">编辑</a>
+                    <a class="ui button" href="{{ route('dashboard.trimesters.edit', $trimester->id) }}">编辑</a>
                     @endpermission
                 </td>
             </tr>

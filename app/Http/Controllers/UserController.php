@@ -32,7 +32,7 @@ class UserController extends Controller
     {
         $users = $this->userRepository->paginate($this->userRepository->getAllWithRoles());
         $presenter = app('PaginationPresenter', [$users]);
-        return view('dashboard.user.index', compact('users', 'presenter'));
+        return view('dashboard.users.index', compact('users', 'presenter'));
     }
 
     public function create(RoleRepositoryInterface $roleRepository,
@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = $this->userRepository->newInstance();
         $roles = $roleRepository->getAll();
         $permissions = $permissionRepository->getAll();
-        return view('dashboard.user.create', compact('user', 'roles', 'permissions'));
+        return view('dashboard.users.create', compact('user', 'roles', 'permissions'));
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
         $user = $this->userRepository->create($request->input());
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
-        return redirect()->route('dashboard.user.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     /**
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = $this->userRepository->getById($id);
         $roles = $roleRepository->getAll();
         $permissions = $permissionRepository->getAll();
-        return view('dashboard.user.edit', compact('user', 'roles', 'permissions'));
+        return view('dashboard.users.edit', compact('user', 'roles', 'permissions'));
     }
 
     public function update(Request $request, $id)
@@ -96,6 +96,6 @@ class UserController extends Controller
         if ($user->deletable) {
             $user->delete();
         }
-        return redirect()->route('dashboard.user.index');
+        return redirect()->route('dashboard.users.index');
     }
 }

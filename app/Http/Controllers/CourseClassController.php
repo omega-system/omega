@@ -33,7 +33,7 @@ class CourseClassController extends Controller
     {
         $classes = $this->courseClassRepository->paginate();
         $presenter = app('PaginationPresenter', [$classes]);
-        return view('dashboard.class.index', compact('classes', 'presenter'));
+        return view('dashboard.classes.index', compact('classes', 'presenter'));
     }
 
     public function create(TrimesterRepositoryInterface $trimesterRepository,
@@ -44,14 +44,14 @@ class CourseClassController extends Controller
         $trimesters = $trimesterRepository->getAllDesc();
         $courses = $courseRepository->getAll();
         $teachers = $roleRepository->getBySlug('teacher')->users;
-        return view('dashboard.class.create', compact('class', 'trimesters', 'courses', 'teachers'));
+        return view('dashboard.classes.create', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
         $this->courseClassRepository->create($request->input());
-        return redirect()->route('dashboard.class.index');
+        return redirect()->route('dashboard.classes.index');
     }
 
     /**
@@ -81,7 +81,7 @@ class CourseClassController extends Controller
         $trimesters = $trimesterRepository->getAllDesc();
         $courses = $courseRepository->getAll();
         $teachers = $roleRepository->getBySlug('teacher')->users;
-        return view('dashboard.class.edit', compact('class', 'trimesters', 'courses', 'teachers'));
+        return view('dashboard.classes.edit', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
     public function update(Request $request, $id)
@@ -95,6 +95,6 @@ class CourseClassController extends Controller
     public function destroy($id)
     {
         $this->courseClassRepository->getById($id)->delete();
-        return redirect()->route('dashboard.class.index');
+        return redirect()->route('dashboard.classes.index');
     }
 }

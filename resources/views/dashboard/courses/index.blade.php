@@ -9,7 +9,7 @@
             <th class="three wide">学分</th>
             <th class="right aligned three wide">
                 @permission('create.courses')
-                <a class="primary ui icon button" href="{{ route('dashboard.course.create') }}">
+                <a class="primary ui icon button" href="{{ route('dashboard.courses.create') }}">
                     <i class="plus icon"></i>
                     创建新课程
                 </a>
@@ -25,7 +25,7 @@
                 <td>{{ $course->credit }}</td>
                 <td class="right aligned">
                     @permission('create.courses')
-                    <a class="ui button" href="{{ route('dashboard.course.edit', $course->course_number) }}">编辑</a>
+                    <a class="ui button" href="{{ route('dashboard.courses.edit', $course->course_number) }}">编辑</a>
                     @endpermission
                 </td>
             </tr>

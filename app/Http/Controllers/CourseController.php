@@ -30,20 +30,20 @@ class CourseController extends Controller
     {
         $courses = $this->courseRepository->paginate();
         $presenter = app('PaginationPresenter', [$courses]);
-        return view('dashboard.course.index', compact('courses', 'presenter'));
+        return view('dashboard.courses.index', compact('courses', 'presenter'));
     }
 
     public function create()
     {
         $course = $this->courseRepository->newInstance();
-        return view('dashboard.course.create', compact('course'));
+        return view('dashboard.courses.create', compact('course'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
         $this->courseRepository->create($request->input());
-        return redirect()->route('dashboard.course.index');
+        return redirect()->route('dashboard.courses.index');
     }
 
     /**
@@ -67,7 +67,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = $this->courseRepository->getByCourseNumber($id);
-        return view('dashboard.course.edit', compact('course'));
+        return view('dashboard.courses.edit', compact('course'));
     }
 
     public function update(Request $request, $courseNumber)
@@ -75,12 +75,12 @@ class CourseController extends Controller
         $this->validate($request, $this->rules($courseNumber));
         $course = $this->courseRepository->getByCourseNumber($courseNumber);
         $course->update($request->except(['course_number']));
-        return redirect()->route('dashboard.course.edit', $course->course_number);
+        return redirect()->route('dashboard.courses.edit', $course->course_number);
     }
 
     public function destroy($id)
     {
         $this->courseRepository->getByCourseNumber($id)->delete();
-        return redirect()->route('dashboard.course.index');
+        return redirect()->route('dashboard.courses.index');
     }
 }

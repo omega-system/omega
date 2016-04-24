@@ -8,7 +8,7 @@ $this->get('/', ['as' => 'index', 'middleware' => ['guest'], function () {
 }]);
 
 $this->get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
-$this->resource('user', 'UserController', ['as' => 'dashboard']);
-$this->resource('trimester', 'TrimesterController', ['as' => 'dashboard']);
-$this->resource('course', 'CourseController', ['as' => 'dashboard']);
-$this->resource('class', 'CourseClassController', ['as' => 'dashboard']);
+$this->resource('users', 'UserController', ['as' => 'dashboard']);
+$this->resource('trimesters', 'TrimesterController', ['as' => 'dashboard']);
+$this->resource('courses', 'CourseController', ['as' => 'dashboard']);
+$this->resource('classes', 'CourseClassController', ['as' => 'dashboard']);

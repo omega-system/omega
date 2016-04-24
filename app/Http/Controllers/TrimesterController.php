@@ -30,20 +30,20 @@ class TrimesterController extends Controller
     {
         $trimesters = $this->trimesterRepository->paginate();
         $presenter = app('PaginationPresenter', [$trimesters]);
-        return view('dashboard.trimester.index', compact('trimesters', 'presenter'));
+        return view('dashboard.trimesters.index', compact('trimesters', 'presenter'));
     }
 
     public function create()
     {
         $trimester = $this->trimesterRepository->newInstance();
-        return view('dashboard.trimester.create', compact('trimester'));
+        return view('dashboard.trimesters.create', compact('trimester'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
         $this->trimesterRepository->create($request->input());
-        return redirect()->route('dashboard.trimester.index');
+        return redirect()->route('dashboard.trimesters.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class TrimesterController extends Controller
     public function edit($id)
     {
         $trimester = $this->trimesterRepository->getById($id);
-        return view('dashboard.trimester.edit', compact('trimester'));
+        return view('dashboard.trimesters.edit', compact('trimester'));
     }
 
     public function update(Request $request, $id)
@@ -80,6 +80,6 @@ class TrimesterController extends Controller
     public function destroy($id)
     {
         $this->trimesterRepository->getById($id)->delete();
-        return redirect()->route('dashboard.trimester.index');
+        return redirect()->route('dashboard.trimesters.index');
     }
 }

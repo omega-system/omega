@@ -12,7 +12,7 @@
             <th class="two wide">教室</th>
             <th class="right aligned three wide">
                 @permission('create.classes')
-                <a class="primary ui icon button" href="{{ route('dashboard.class.create') }}">
+                <a class="primary ui icon button" href="{{ route('dashboard.classes.create') }}">
                     <i class="plus icon"></i>
                     创建新班级
                 </a>
@@ -31,7 +31,7 @@
                 <td>{{ $class->location }}</td>
                 <td class="right aligned">
                     @permission('create.classes')
-                    <a class="ui button" href="{{ route('dashboard.class.edit', $class->id) }}">编辑</a>
+                    <a class="ui button" href="{{ route('dashboard.classes.edit', $class->id) }}">编辑</a>
                     @endpermission
                 </td>
             </tr>
