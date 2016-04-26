@@ -13,7 +13,7 @@ class AlterUsersTableInsertNameColumn extends Migration
     {
         Schema::table('users', function ($table) {
             $table->string('number', 8)->change();
-            $table->string('name')->after('number');
+            $table->string('name')->after('number')->default('');
         });
     }
 
