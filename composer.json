@@ -14,7 +14,8 @@
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^3.1",
         "laravelcollective/html": "^5.2",
-        "felixkiss/uniquewith-validator": "^2.0"
+        "felixkiss/uniquewith-validator": "^2.0",
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
