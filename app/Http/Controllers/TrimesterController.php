@@ -4,45 +4,36 @@ namespace Omega\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Omega\Http\Requests;
-use Omega\Repositories\TrimesterRepositoryInterface;
+use Omega\Trimester;
 
 class TrimesterController extends Controller
 {
     /**
-     * @var TrimesterRepositoryInterface
-     */
-    private $trimesterRepository;
-
-    /**
      * UserController constructor.
-     * @param TrimesterRepositoryInterface $trimesterRepository
      */
-    public function __construct(TrimesterRepositoryInterface $trimesterRepository)
+    public function __construct()
     {
         $this->middleware('permission:create.trimesters|delete.trimesters', ['only' => ['index', 'show']]);
         $this->middleware('permission:create.trimesters', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('permission:delete.trimesters', ['only' => 'destroy']);
-
-        $this->trimesterRepository = $trimesterRepository;
     }
 
     public function index()
     {
-        $trimesters = $this->trimesterRepository->paginate();
+        $trimesters = Trimester::paginate();
         $presenter = app('PaginationPresenter', [$trimesters]);
         return view('dashboard.trimesters.index', compact('trimesters', 'presenter'));
     }
 
-    public function create()
+    public function create(Trimester $trimester)
     {
-        $trimester = $this->trimesterRepository->newInstance();
         return view('dashboard.trimesters.create', compact('trimester'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
-        $this->trimesterRepository->create($request->input());
+        Trimester::create($request->input());
         return redirect()->route('dashboard.trimesters.index');
     }
 
@@ -63,23 +54,21 @@ class TrimesterController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Trimester $trimester)
     {
-        $trimester = $this->trimesterRepository->getById($id);
         return view('dashboard.trimesters.edit', compact('trimester'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Trimester $trimester)
     {
         $this->validate($request, $this->rules());
-        $trimester = $this->trimesterRepository->getById($id);
         $trimester->update($request->input());
         return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(Trimester $trimester)
     {
-        $this->trimesterRepository->getById($id)->delete();
+        $trimester->delete();
         return redirect()->route('dashboard.trimesters.index');
     }
 }

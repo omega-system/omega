@@ -2,55 +2,44 @@
 
 namespace Omega\Http\Controllers;
 
+use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
+use Omega\Course;
+use Omega\CourseClass;
 use Omega\Http\Requests;
-use Omega\Repositories\CourseClassRepositoryInterface;
-use Omega\Repositories\CourseRepositoryInterface;
-use Omega\Repositories\RoleRepositoryInterface;
-use Omega\Repositories\TrimesterRepositoryInterface;
+use Omega\Trimester;
 
 class CourseClassController extends Controller
 {
     /**
-     * @var CourseClassRepositoryInterface
-     */
-    private $courseClassRepository;
-
-    /**
      * UserController constructor.
-     * @param CourseClassRepositoryInterface $courseClassRepository
      */
-    public function __construct(CourseClassRepositoryInterface $courseClassRepository)
+    public function __construct()
     {
         $this->middleware('permission:create.classes|delete.classes', ['only' => ['index', 'show']]);
         $this->middleware('permission:create.classes', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('permission:delete.classes', ['only' => 'destroy']);
-
-        $this->courseClassRepository = $courseClassRepository;
     }
 
     public function index()
     {
-        $classes = $this->courseClassRepository->paginate();
+        $classes = CourseClass::paginate();
         $presenter = app('PaginationPresenter', [$classes]);
         return view('dashboard.classes.index', compact('classes', 'presenter'));
     }
 
-    public function create(TrimesterRepositoryInterface $trimesterRepository,
-                           CourseRepositoryInterface $courseRepository,
-                           RoleRepositoryInterface $roleRepository)
+    public function create(CourseClass $class)
     {
-        $class = $this->courseClassRepository->newInstance();
-        $trimesters = $trimesterRepository->getAllDesc();
-        $courses = $courseRepository->getAll();
-        $teachers = $roleRepository->getBySlug('teacher')->users;
+        $trimesters = Trimester::allDesc();
+        $courses = Course::all();
+        $teachers = Role::whereSlug('teacher')->firstOrFail()->users;
         return view('dashboard.classes.create', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
-        $this->courseClassRepository->create($request->input());
+        CourseClass::create($request->input());
         return redirect()->route('dashboard.classes.index');
     }
 
@@ -83,29 +72,24 @@ class CourseClassController extends Controller
         //
     }
 
-    public function edit(TrimesterRepositoryInterface $trimesterRepository,
-                         CourseRepositoryInterface $courseRepository,
-                         RoleRepositoryInterface $roleRepository,
-                         $id)
+    public function edit(CourseClass $class)
     {
-        $class = $this->courseClassRepository->getById($id);
-        $trimesters = $trimesterRepository->getAllDesc();
-        $courses = $courseRepository->getAll();
-        $teachers = $roleRepository->getBySlug('teacher')->users;
+        $trimesters = Trimester::allDesc();
+        $courses = Course::all();
+        $teachers = Role::whereSlug('teacher')->firstOrFail()->users;
         return view('dashboard.classes.edit', compact('class', 'trimesters', 'courses', 'teachers'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, CourseClass $class)
     {
-        $this->validate($request, $this->rules($id));
-        $class = $this->courseClassRepository->getById($id);
+        $this->validate($request, $this->rules($class->id));
         $class->update($request->input());
         return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(CourseClass $class)
     {
-        $this->courseClassRepository->getById($id)->delete();
+        $class->delete();
         return redirect()->route('dashboard.classes.index');
     }
 }

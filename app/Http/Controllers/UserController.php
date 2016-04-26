@@ -2,52 +2,42 @@
 
 namespace Omega\Http\Controllers;
 
+use Bican\Roles\Models\Permission;
+use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
 use Omega\Http\Requests;
-use Omega\Repositories\PermissionRepositoryInterface;
-use Omega\Repositories\RoleRepositoryInterface;
-use Omega\Repositories\UserRepositoryInterface;
+use Omega\User;
 
 class UserController extends Controller
 {
     /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
-
-    /**
      * UserController constructor.
-     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct()
     {
         $this->middleware('permission:create.users|delete.users', ['only' => ['index', 'show']]);
         $this->middleware('permission:create.users', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('permission:delete.users', ['only' => 'destroy']);
-
-        $this->userRepository = $userRepository;
     }
 
     public function index()
     {
-        $users = $this->userRepository->paginate($this->userRepository->getAllWithRoles());
+        $users = User::with('roles')->paginate();
         $presenter = app('PaginationPresenter', [$users]);
         return view('dashboard.users.index', compact('users', 'presenter'));
     }
 
-    public function create(RoleRepositoryInterface $roleRepository,
-                           PermissionRepositoryInterface $permissionRepository)
+    public function create(User $user)
     {
-        $user = $this->userRepository->newInstance();
-        $roles = $roleRepository->getAll();
-        $permissions = $permissionRepository->getAll();
+        $roles = Role::all();
+        $permissions = Permission::all();
         return view('dashboard.users.create', compact('user', 'roles', 'permissions'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
-        $user = $this->userRepository->create($request->input());
+        $user = User::create($request->input());
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
         return redirect()->route('dashboard.users.index');
@@ -70,29 +60,24 @@ class UserController extends Controller
         //
     }
 
-    public function edit(RoleRepositoryInterface $roleRepository,
-                         PermissionRepositoryInterface $permissionRepository,
-                         $id)
+    public function edit(User $user)
     {
-        $user = $this->userRepository->getById($id);
-        $roles = $roleRepository->getAll();
-        $permissions = $permissionRepository->getAll();
+        $roles = Role::all();
+        $permissions = Permission::all();
         return view('dashboard.users.edit', compact('user', 'roles', 'permissions'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $this->validate($request, $this->rules($id));
-        $user = $this->userRepository->getById($id);
+        $this->validate($request, $this->rules($user->id));
         $user->update($request->input());
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
         return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = $this->userRepository->getById($id);
         if ($user->deletable) {
             $user->delete();
         }

@@ -3,46 +3,37 @@
 namespace Omega\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Omega\Course;
 use Omega\Http\Requests;
-use Omega\Repositories\CourseRepositoryInterface;
 
 class CourseController extends Controller
 {
     /**
-     * @var CourseRepositoryInterface
-     */
-    private $courseRepository;
-
-    /**
      * UserController constructor.
-     * @param CourseRepositoryInterface $courseRepository
      */
-    public function __construct(CourseRepositoryInterface $courseRepository)
+    public function __construct()
     {
         $this->middleware('permission:create.courses|delete.courses', ['only' => ['index', 'show']]);
         $this->middleware('permission:create.courses', ['only' => ['create', 'store', 'edit', 'update']]);
         $this->middleware('permission:delete.courses', ['only' => 'destroy']);
-
-        $this->courseRepository = $courseRepository;
     }
 
     public function index()
     {
-        $courses = $this->courseRepository->paginate();
+        $courses = Course::paginate();
         $presenter = app('PaginationPresenter', [$courses]);
         return view('dashboard.courses.index', compact('courses', 'presenter'));
     }
 
-    public function create()
+    public function create(Course $course)
     {
-        $course = $this->courseRepository->newInstance();
         return view('dashboard.courses.create', compact('course'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->rules());
-        $this->courseRepository->create($request->input());
+        Course::create($request->input());
         return redirect()->route('dashboard.courses.index');
     }
 
@@ -64,23 +55,21 @@ class CourseController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Course $course)
     {
-        $course = $this->courseRepository->getByCourseNumber($id);
         return view('dashboard.courses.edit', compact('course'));
     }
 
-    public function update(Request $request, $courseNumber)
+    public function update(Request $request, Course $course)
     {
-        $this->validate($request, $this->rules($courseNumber));
-        $course = $this->courseRepository->getByCourseNumber($courseNumber);
+        $this->validate($request, $this->rules($course->course_number));
         $course->update($request->except(['course_number']));
         return redirect()->route('dashboard.courses.edit', $course->course_number);
     }
 
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        $this->courseRepository->getByCourseNumber($id)->delete();
+        $course->delete();
         return redirect()->route('dashboard.courses.index');
     }
 }

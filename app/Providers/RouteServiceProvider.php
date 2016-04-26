@@ -24,9 +24,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
-
         parent::boot($router);
+
+        $router->model('users', 'Omega\User');
+        $router->model('trimesters', 'Omega\Trimester');
+        $router->model('courses', 'Omega\Course');
+        $router->model('classes', 'Omega\CourseClass');
     }
 
     /**

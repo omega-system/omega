@@ -13,4 +13,12 @@ class Trimester extends Model
     {
         return $this->hasMany('Omega\CourseClass');
     }
+
+    public function scopeAllDesc()
+    {
+        return $this
+            ->orderBy('year', 'desc')
+            ->orderBy('sequence', 'desc')
+            ->get();
+    }
 }
