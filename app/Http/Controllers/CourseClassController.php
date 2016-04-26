@@ -55,6 +55,7 @@ class CourseClassController extends Controller
     }
 
     /**
+     * @param string $id
      * @return array
      */
     protected function rules($id = '')
