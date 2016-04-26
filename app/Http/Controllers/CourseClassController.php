@@ -57,14 +57,24 @@ class CourseClassController extends Controller
     /**
      * @return array
      */
-    protected function rules()
+    protected function rules($id = '')
     {
-        return [
+        $rules = [
             'trimester_id' => 'required|exists:trimesters,id',
             'course_number' => 'required|exists:courses',
             'class_number' => 'required|digits:4|unique_with:course_classes,trimester_id,course_number',
             'teacher_id' => 'required|exists:users,id',
         ];
+
+        /*
+         * ignore the current id
+         * if a user is editing a class
+         */
+        if (!empty($id)) {
+            $rules['class_number'] .= ',' . $id;
+        }
+
+        return $rules;
     }
 
     public function show($id)
@@ -86,7 +96,7 @@ class CourseClassController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->rules());
+        $this->validate($request, $this->rules($id));
         $class = $this->courseClassRepository->getById($id);
         $class->update($request->input());
         return redirect()->back();

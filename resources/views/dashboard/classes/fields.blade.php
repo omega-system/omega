@@ -19,9 +19,9 @@
     <label>课程</label>
     <select name="course_number" class="ui search dropdown">
         @foreach ($courses as $course)
-            @if (old('course_number') == $course->course_number)
+            @if (old('course_number', $class->course_number) == $course->course_number)
                 <option value="{{ $course->course_number }}" selected>
-                    {{ $course->course_name }} ({{ $course->course_number }})
+                    {{ $course->course_number }} {{ $course->course_name }}
                 </option>
             @else
                 <option value="{{ $course->course_number }}">

@@ -4,7 +4,7 @@
     <h2 class="ui header">编辑 {{ $class->course->course_name }} ({{ $class->course->course_number }})
         {{ $class->class_number }}</h2>
     <form class="ui form {{ set_error($errors->count()) }}" method="post"
-          action="{{ route('dashboard.classes.update', $class->class_number) }}">
+          action="{{ route('dashboard.classes.update', $class->id) }}">
         {!! csrf_field() !!}
         {!! method_field('put') !!}
         @include('dashboard.classes.fields')
