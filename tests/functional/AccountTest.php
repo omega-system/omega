@@ -9,34 +9,45 @@ class AccountTest extends TestCase
 
     public function testLogin()
     {
-        // attempt to log in an nonexistent user
-        // it fails
-        $this->visit('/login')
-            ->type('99999999', 'number')
-            ->type('123456', 'password')
-            ->press('登录')
-            ->seePageIs('/login');
+        // generate a random password
+        $password = str_random();
 
-        // given a user
-        $user = factory(User::class)->create([
-            'password' => bcrypt('secret')
+        // given a nonexistent user
+        $user = factory(User::class)->make([
+            'password' => bcrypt($password)
         ]);
 
-        // attempt to log in with that number and incorrect password
-        // it fails
+        // attempt to log in an nonexistent user
         $this->visit('/login')
             ->type($user->number, 'number')
-            ->type('incorrect_secret', 'password')
-            ->press('登录')
-            ->seePageIs('/login');
+            ->type($password, 'password')
+            ->press('登录');
+
+        // it fails
+        $this->assertFalse(Auth::check());
+
+        // persist that user
+        $user->save();
+
+        // attempt to log in that user with incorrect password
+        $this->visit('/login')
+            ->type($user->number, 'number')
+            ->type('wrong_' . $password, 'password')
+            ->press('登录');
+
+        // it fails
+        $this->assertFalse(Auth::check());
 
         // attempt to log in with that number and correct password
         // it redirects to dashboard
         $this->visit('/login')
             ->type($user->number, 'number')
-            ->type('secret', 'password')
+            ->type($password, 'password')
             ->press('登录')
             ->seePageIs(route('dashboard.index'));
+
+        // and authenticates
+        $this->assertEquals($user->number, Auth::user()->number);
     }
 
     public function testLogout()
