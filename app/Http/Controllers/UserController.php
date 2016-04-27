@@ -49,10 +49,19 @@ class UserController extends Controller
      */
     protected function rules($id = '')
     {
-        return [
-            'number' => 'required|digits:8|unique:users,number,' . $id,
-            'name' => 'required|string|max:10',
-        ];
+        if (empty($id)) {
+            return [
+                'number' => 'required|digits:8|unique:users,number',
+                'name' => 'required|string|max:10',
+                'password' => 'required|min:6|confirmed'
+            ];
+        } else {
+            return [
+                'number' => 'required|digits:8|unique:users,number,' . $id,
+                'name' => 'required|string|max:10',
+                'password' => 'min:6|confirmed'
+            ];
+        }
     }
 
     public function show($id)
@@ -70,7 +79,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->validate($request, $this->rules($user->id));
-        $user->update($request->input());
+        $input = empty($request->input('password')) ?
+            $request->except(['password', 'password_confirmation']) :
+            $request->input();
+        $user->update($input);
         $user->roles()->sync($request->input('roles', []));
         $user->userPermissions()->sync($request->input('user_permissions', []));
         return redirect()->back();

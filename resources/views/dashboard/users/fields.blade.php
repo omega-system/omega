@@ -9,7 +9,15 @@
 </div>
 <div class="field {{ set_error($errors->has('name')) }}">
     <label>姓名</label>
-    <input type="text" name="name" value="{{ old('name', $user->name) }}">
+    <input type="password" name="name" value="{{ old('name', $user->name) }}">
+</div>
+<div class="field {{ set_error($errors->has('password')) }}">
+    <label>密码</label>
+    <input type="password" name="password">
+</div>
+<div class="field {{ set_error($errors->has('password_confirmation')) }}">
+    <label>确认密码</label>
+    <input type="text" name="password_confirmation">
 </div>
 <h3>角色</h3>
 @foreach ($roles as $role)
