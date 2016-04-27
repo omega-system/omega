@@ -46,7 +46,7 @@ class AccountTest extends TestCase
             ->press('登录')
             ->seePageIs(route('dashboard.index'));
 
-        // and authenticates
+        // and logs in
         $this->assertEquals($user->number, Auth::user()->number);
     }
 
@@ -61,5 +61,8 @@ class AccountTest extends TestCase
         $this->actingAs($user)
             ->get('/logout')
             ->assertRedirectedTo('/');
+
+        // and logs out
+        $this->assertFalse(Auth::check());
     }
 }
