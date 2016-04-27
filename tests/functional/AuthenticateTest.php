@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Omega\User;
 
-class AccountTest extends TestCase
+class AuthenticateTest extends TestCase
 {
     use DatabaseMigrations;
 
