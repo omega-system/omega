@@ -2,23 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use Omega\Repositories\TrimesterRepositoryInterface;
+use Omega\Trimester;
 
 class TrimestersTableSeeder extends Seeder
 {
-    /**
-     * @var TrimesterRepositoryInterface
-     */
-    private $repository;
-
-    /**
-     * TrimestersTableSeeder constructor.
-     * @param TrimesterRepositoryInterface $repository
-     */
-    public function __construct(TrimesterRepositoryInterface $repository)
-    {
-        $this->repository = $repository;
-    }
-
     /**
      * Run the database seeds.
      *
@@ -29,7 +16,7 @@ class TrimestersTableSeeder extends Seeder
         for ($year = 2013; $year <= 2017; $year++) {
             for ($sequence = 1; $sequence <= 4; $sequence++) {
                 $trimester_name = $this->makeName($year, $sequence);
-                $this->repository->create(compact('year', 'sequence', 'trimester_name'));
+                Trimester::create(compact('year', 'sequence', 'trimester_name'));
             }
         }
     }
