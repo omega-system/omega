@@ -54,6 +54,7 @@ class CourseClassController extends Controller
             'course_number' => 'required|exists:courses',
             'class_number' => 'required|digits:4|unique_with:course_classes,trimester_id,course_number',
             'teacher_id' => 'required|exists:users,id',
+            'location' => 'required'
         ];
 
         /*

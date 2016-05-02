@@ -123,6 +123,7 @@ return [
 
         'trimester_id' => '学期',
         'class_number' => '班级号',
+        'location' => '教室',
     ],
 
 ];
