@@ -51,3 +51,7 @@
         @endforeach
     </select>
 </div>
+<div class="field {{ set_error($errors->has('location')) }}">
+    <label>教室</label>
+    <input type="text" name="location" value="{{ old('location', $class->location) }}">
+</div>
