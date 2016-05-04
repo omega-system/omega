@@ -19,6 +19,11 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
         'password', 'remember_token',
     ];
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function getRolesStringAttribute()
     {
         return join(', ', $this->roles()->pluck('name')->toArray());
