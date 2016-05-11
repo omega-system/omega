@@ -13,5 +13,8 @@
         @permission('create.classes|delete.classes')
         <a class="{{ set_active_route('dashboard.classes.*') }} item" href="{{ route('dashboard.classes.index') }}">班级管理</a>
         @endpermission
+        @role('teacher')
+        <a class="{{ set_active_route('teacher.*') }} item" href="{{ route('teacher.classes.index') }}">我的班级</a>
+        @endrole
     </div>
 </div>
