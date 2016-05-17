@@ -22,3 +22,7 @@ Route::get('teacher/classes', ['as' => 'dashboard.teacher.classes.index',
     'uses' => 'TeacherController@showClasses']);
 Route::get('teacher/classes/{class}/enrollments', ['as' => 'dashboard.teacher.classes.enrollments',
     'uses' => 'TeacherController@showEnrollments']);
+Route::get('teacher/classes/{class}/score_update', ['as' => 'dashboard.teacher.classes.score_update',
+    'uses' => 'TeacherController@updateScore']);
+Route::put('teacher/classes/{class}/score_update', ['as' => 'dashboard.teacher.classes.score_update',
+    'uses' => 'TeacherController@storeScore']);

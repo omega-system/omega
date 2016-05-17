@@ -8,7 +8,10 @@
         <tr>
             <th class="three column wide">序号</th>
             <th class="three column wide">学号</th>
-            <th class="ten column wide">姓名</th>
+            <th class="four column wide">姓名</th>
+            <th class="two column wide">平时成绩</th>
+            <th class="two column wide">考试成绩</th>
+            <th class="two column wide">总评成绩</th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +21,9 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $enrollment->student->number }}</td>
                 <td>{{ $enrollment->student->name }}</td>
+                <td>{{ $enrollment->score_a }}</td>
+                <td>{{ $enrollment->score_b }}</td>
+                <td>{{ $enrollment->score }}</td>
             </tr>
         @endforeach
         </tbody>

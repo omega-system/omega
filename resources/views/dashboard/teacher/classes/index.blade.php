@@ -15,11 +15,11 @@
     <table class="ui unstackable table">
         <thead>
         <tr>
-            <th class="six wide">课程</th>
-            <th class="three wide">班级号</th>
+            <th class="five wide">课程</th>
+            <th class="two wide">班级号</th>
             <th class="two wide">人数</th>
-            <th class="three wide">地点</th>
-            <th class="two wide"></th>
+            <th class="two wide">地点</th>
+            <th class="four wide"></th>
         </tr>
         </thead>
         <tbody>
@@ -30,9 +30,11 @@
                 <td>{{ $class->enrollments()->count() }}</td>
                 <td>{{ $class->location }}</td>
                 <td class="right aligned">
-                    @permission('create.classes')
-                    <a class="ui button" href="{{ route('dashboard.teacher.classes.enrollments', $class->id) }}">查看名单</a>
-                    @endpermission
+                    <a class="ui button"
+                       href="{{ route('dashboard.teacher.classes.enrollments', $class->id) }}">查看名单</a>
+                    @if ($current_trimester->is_current and $system->allowScoreUpdate())
+                        <a class="ui button" href="{{ route('dashboard.teacher.classes.score_update', $class->id) }}">录入成绩</a>
+                    @endif
                 </td>
             </tr>
         @endforeach
