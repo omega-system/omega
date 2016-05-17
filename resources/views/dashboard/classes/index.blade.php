@@ -27,7 +27,7 @@
                 <td>{{ $class->course->course_number }}</td>
                 <td>{{ $class->course->course_name }}</td>
                 <td>{{ $class->class_number }}</td>
-                <td>{{ $class->teacher->number }}</td>
+                <td>{{ $class->teacher->name }} ({{ $class->teacher->number }})</td>
                 <td>{{ $class->location }}</td>
                 <td class="right aligned">
                     @permission('create.classes')

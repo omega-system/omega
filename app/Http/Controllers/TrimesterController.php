@@ -14,7 +14,7 @@ class TrimesterController extends Controller
     public function __construct()
     {
         $this->middleware('permission:create.trimesters|delete.trimesters', ['only' => ['index', 'show']]);
-        $this->middleware('permission:create.trimesters', ['only' => ['create', 'store', 'edit', 'update']]);
+        $this->middleware('permission:create.trimesters', ['only' => ['create', 'store', 'edit', 'update', 'setAsCurrent']]);
         $this->middleware('permission:delete.trimesters', ['only' => 'destroy']);
     }
 
@@ -70,5 +70,11 @@ class TrimesterController extends Controller
     {
         $trimester->delete();
         return redirect()->route('dashboard.trimesters.index');
+    }
+
+    public function setAsCurrent(Trimester $trimester)
+    {
+        $trimester->setAsCurrent();
+        return redirect()->back();
     }
 }

@@ -35,9 +35,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
+        $router->singularResourceParameters();
         $this->mapWebRoutes($router);
-
-        //
     }
 
     /**

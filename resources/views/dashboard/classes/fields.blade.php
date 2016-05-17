@@ -55,3 +55,7 @@
     <label>教室</label>
     <input type="text" name="location" value="{{ old('location', $class->location) }}">
 </div>
+<div class="field {{ set_error($errors->has('score_a_percent')) }}">
+    <label>平时成绩百分比</label>
+    <input type="text" name="score_a_percent" value="{{ old('score_a_percent', $class->score_a_percent) }}">
+</div>

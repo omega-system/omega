@@ -26,35 +26,5 @@ class AppServiceProvider extends ServiceProvider
             'PaginationPresenter',
             'Omega\Presenters\Pagination\SemanticUIPresenter'
         );
-
-        $this->app->bind(
-            'Omega\Repositories\UserRepositoryInterface',
-            'Omega\Repositories\DbUserRepository'
-        );
-
-        $this->app->bind(
-            'Omega\Repositories\RoleRepositoryInterface',
-            'Omega\Repositories\DbRoleRepository'
-        );
-
-        $this->app->bind(
-            'Omega\Repositories\PermissionRepositoryInterface',
-            'Omega\Repositories\DbPermissionRepository'
-        );
-
-        $this->app->bind(
-            'Omega\Repositories\TrimesterRepositoryInterface',
-            'Omega\Repositories\DbTrimesterRepository'
-        );
-
-        $this->app->bind(
-            'Omega\Repositories\CourseRepositoryInterface',
-            'Omega\Repositories\DbCourseRepository'
-        );
-
-        $this->app->bind(
-            'Omega\Repositories\CourseClassRepositoryInterface',
-            'Omega\Repositories\DbCourseClassRepository'
-        );
     }
 }

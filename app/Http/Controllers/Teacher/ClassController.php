@@ -18,15 +18,7 @@ class ClassController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
 
-        //$classes = $user->courseClasses->where('id', 2);
-
-        //return $classes;
-        $classes=$user->courseClasses;
-        //return $user->courseClasses;
-
-        return view('dashboard.teachers.index', compact('classes'));
 
     }
 

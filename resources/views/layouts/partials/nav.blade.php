@@ -1,6 +1,9 @@
 <div class="ui tabular menu">
     <div class="ui container">
         <a class="{{ set_active_route('dashboard.index') }} item" href="{{ route('dashboard.index') }}">基本信息</a>
+        @role('admin')
+        <a class="{{ set_active_route('dashboard.system.*') }} item" href="{{ route('dashboard.system.index') }}">系统设置</a>
+        @endrole
         @permission('create.users|delete.users')
         <a class="{{ set_active_route('dashboard.users.*') }} item" href="{{ route('dashboard.users.index') }}">用户管理</a>
         @endpermission
@@ -14,7 +17,7 @@
         <a class="{{ set_active_route('dashboard.classes.*') }} item" href="{{ route('dashboard.classes.index') }}">班级管理</a>
         @endpermission
         @role('teacher')
-        <a class="{{ set_active_route('teacher.*') }} item" href="{{ route('teacher.classes.index') }}">我的班级</a>
+        <a class="{{ set_active_route('dashboard.teacher.classes.*') }} item" href="{{ route('dashboard.teacher.classes.index') }}">我的班级</a>
         @endrole
     </div>
 </div>
