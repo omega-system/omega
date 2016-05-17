@@ -155,6 +155,7 @@ return [
         Bican\Roles\RolesServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
         Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
          * Application Service Providers...

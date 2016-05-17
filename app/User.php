@@ -19,6 +19,11 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
         'password', 'remember_token',
     ];
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function getRolesStringAttribute()
     {
         return join(', ', $this->roles()->pluck('name')->toArray());
@@ -35,4 +40,10 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     {
         return $this->hasMany('Omega\CourseClass', 'teacher_id');
     }
+    
+    public function enrollments()
+    {
+        return $this->hasMany('Omega\CourseEnrollment');
+    }
 }
+

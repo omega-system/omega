@@ -123,6 +123,8 @@ return [
 
         'trimester_id' => '学期',
         'class_number' => '班级号',
+        'location' => '教室',
+        'score_a_percent' => '平时成绩百分比',
     ],
 
 ];

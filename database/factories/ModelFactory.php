@@ -13,8 +13,8 @@
 
 $factory->define(Omega\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
+        'number' => $faker->numerify('########'),
+        'name' => $faker->text(10),
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
