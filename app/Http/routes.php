@@ -26,3 +26,14 @@ Route::get('teacher/classes/{class}/score_update', ['as' => 'dashboard.teacher.c
     'uses' => 'TeacherController@updateScore']);
 Route::put('teacher/classes/{class}/score_update', ['as' => 'dashboard.teacher.classes.score_update',
     'uses' => 'TeacherController@storeScore']);
+
+Route::get('student/classes', ['as' => 'dashboard.student.classes',
+    'uses' => 'StudentController@showClasses']);
+Route::get('student/enrollment', ['as' => 'dashboard.student.enrollment',
+    'uses' => 'StudentController@enrollment']);
+Route::get('student/enrollment/{course_class_id}', 'StudentController@enroll');
+Route::get('student/withdrawal/{course_class_id}', ['as' => 'dashboard.student.withdrawal',
+    'uses' => 'StudentController@withdraw']);
+
+Route::get('api/course_classes', ['as' => 'api.course_classes',
+    'uses' => 'Api\CourseClassController@query']);

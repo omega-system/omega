@@ -1,4 +1,5 @@
 <?php
+use Omega\System;
 use Omega\Trimester;
 
 function set_active($path, $active = 'active')
@@ -35,4 +36,16 @@ function get_current_trimester_id($default = null)
 {
     $currentTrimester = get_current_trimester();
     return $currentTrimester ? $currentTrimester->id : $default;
+}
+
+function allow_enrollment()
+{
+    $system = new System();
+    return $system->allowEnrollment();
+}
+
+function allow_withdrawal()
+{
+    $system = new System();
+    return $system->allowWithdrawal();
 }
