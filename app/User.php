@@ -40,7 +40,7 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     {
         return $this->hasMany('Omega\CourseClass', 'teacher_id');
     }
-    
+
     public function enrollments()
     {
         return $this->hasMany('Omega\CourseEnrollment');

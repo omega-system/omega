@@ -92,8 +92,17 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'score_a.*' => [
+            'required' => '平时成绩不能为空。',
+            'integer' => '平时成绩必须是整数。',
+            'min' => '平时成绩不能是负数。',
+            'max' => '平时成绩不能超过 100。',
+        ],
+        'score_b.*' => [
+            'required' => '考试成绩不能为空。',
+            'integer' => '考试成绩必须是整数。',
+            'min' => '考试成绩不能是负数。',
+            'max' => '考试成绩不能超过 100。',
         ],
     ],
 
